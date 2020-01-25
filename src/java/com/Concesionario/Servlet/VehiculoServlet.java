@@ -20,6 +20,7 @@ import com.Concesionario.DAO.VehiculoDAO;
 import com.Concesionario.Entity.Vehiculo;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import javax.activation.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -82,7 +83,7 @@ public class VehiculoServlet extends HttpServlet {
 			case "showedit":
 				showEditar(request, response);
 				break;	
-			case "editar":
+			case "editarVehiculo":
 				editar(request, response);
 				break;
 			case "eliminar":
@@ -138,9 +139,11 @@ public class VehiculoServlet extends HttpServlet {
 	
 	private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		Vehiculo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		request.setAttribute("articulo", articulo);
+		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+                listaVehiculos.add(articulo);
+                request.setAttribute("articulo", listaVehiculos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/showEditar.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditar.jsp");
 		dispatcher.forward(request, response);
 	}
 	

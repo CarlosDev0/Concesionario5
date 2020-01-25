@@ -88,11 +88,11 @@ public class VehiculoDAO {
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setInt(1, id);
+	/*	statement.setInt(1, id); */
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			articulo = new Vehiculo(res.getInt("IdVehiculo"), res.getString("modelo"), res.getString("marca"), res.getShort("anoFabricacion"));
+			articulo = new Vehiculo(res.getInt("IdVehiculo"), res.getString("modelo"), res.getString("marca"), res.getShort("ano_Fabricacion"));
 		}
 		res.close();
 		con.desconectar();
@@ -103,7 +103,7 @@ public class VehiculoDAO {
 	// actualizar
 	public boolean actualizar(Vehiculo articulo) throws SQLException {
 		boolean rowActualizar = false;
-		String sql = "UPDATE Vehiculo SET codigo=?,nombre=?,descripcion=?,existencia=?, precio=? WHERE id=?";
+		String sql = "UPDATE Vehiculo SET Modelo=?,Marca=?,Ano_Fabricacion=? WHERE IdVehiculo=?";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class VehiculoDAO {
 		statement.setString(2, articulo.getMarca());
 		statement.setShort(3, articulo.getAnoFabricacion());
 		
-		statement.setInt(6, articulo.getIdVehiculo());
+		statement.setInt(4, articulo.getIdVehiculo());
 
 		rowActualizar = statement.executeUpdate() > 0;
 		statement.close();
