@@ -6,12 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${empty Cliente}">
-    |<a href="Vehiculo?action=listarVehiculos">Listar Vehiculos</a>|
+
+    |<a href="Vehiculo?action=listarVehiculos">Listar VehiculosX</a>|
     |<a href="">Listar Clientes</a>|
     |<a href="">Nuevo Cliente</a>
     
-</c:if>
+
     
     
     <c:if test="${not empty login}">

@@ -1,0 +1,16 @@
+.collapse navbar-collapse {
+  background-color: #00000;
+  border-color: #0f4c92;
+}
+.navbar-default .navbar-link {
+  color: #0f4c92;
+}
+.navbar-default .navbar-link:hover {
+  color: #00000;
+}
+.navbar-default .navbar-text {
+  color: #0f4c92;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #0f4c92;
+}

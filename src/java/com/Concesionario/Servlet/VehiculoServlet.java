@@ -124,7 +124,7 @@ public class VehiculoServlet extends HttpServlet {
 	}
 	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/register.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/portafolio.jsp");
 		dispatcher.forward(request, response);
 	}
 	
