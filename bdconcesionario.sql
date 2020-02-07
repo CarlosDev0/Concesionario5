@@ -2,8 +2,8 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Generation Time: Feb 07, 2020 at 02:33 AM
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 07, 2020 at 02:48 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -71,6 +71,29 @@ INSERT INTO `vehiculo` (`IdVehiculo`, `Modelo`, `MARCA`, `Precio`, `Descripcion`
 (1, 'Sandero', 'Renault', '14006', 'Nuevo'),
 (4, 'Vitara', 'Chevrolet', '66666', 'Azul'),
 (2, 'March', 'Nissan', '5564', 'Lujo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ventas`
+--
+
+DROP TABLE IF EXISTS `ventas`;
+CREATE TABLE IF NOT EXISTS `ventas` (
+  `IdVenta` int(11) NOT NULL AUTO_INCREMENT,
+  `IdCliente` int(11) NOT NULL,
+  `IdVehiculo` int(11) NOT NULL,
+  `Cantidad` smallint(6) DEFAULT NULL,
+  `FechaVenta` date DEFAULT NULL,
+  `NombreVendedor` varchar(100) DEFAULT NULL,
+  `PrecioVentaUnitario` decimal(15,2) DEFAULT NULL,
+  `Iva` decimal(15,2) DEFAULT NULL,
+  `CiudadVenta` varchar(60) DEFAULT NULL,
+  `Comentario` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`IdVenta`),
+  KEY `Fk_IdCliente` (`IdCliente`),
+  KEY `Fk_IdVehiculo` (`IdVehiculo`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
