@@ -9,7 +9,7 @@
 <title>Administrar Artículos</title>
 </head>
 <body>
-	<h1>Lista  Artículos</h1>
+	<h1>LISTA DE CLIENTES</h1>
 	<table>
 		<tr>
 			<td><a href="Vehiculo?action=index" >Ir al menú</a> </td>
@@ -19,12 +19,12 @@
 	
 	<table border="1" width="100%">
 		<tr>
-		 <td> ID</td>
-		 <td> MARCA</td>
-		 <td> MODELO</td>
-		 <td>AÑO DE FABRICACIÓN</td>
+		 <th> ID</th>
+		 <th> NOMBRE</th>
+		 <th> CEDULA</th>
 		 
-		 <td colspan=2>ACCIONES</td>
+		 
+		 <th colspan=2>ACCIONES</th>
 		</tr>
 		<c:forEach var="Cliente" items="${lista}">
 			<tr>

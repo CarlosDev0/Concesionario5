@@ -3,7 +3,7 @@
     Created on : 21/01/2020, 1:47:26 p.m.
     Author     : yesen
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,13 +30,13 @@
     <body id="page-top">
         <h1>AUTOS</h1>
        <section class="page-section" id="contact">
-    <div class="container">
+        <div class="container">
 
-      <!-- Contact Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Datos</h2>
+        <!-- Contact Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Datos</h2>
 
-      <!-- Icon Divider -->
-      <div class="divider-custom">
+        <!-- Icon Divider -->
+        <div class="divider-custom">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon">
           <i class="fas fa-star"></i>
@@ -45,21 +45,27 @@
       </div>
         
         <!-- Contact Section Form -->
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
+  <!--    <div class="row">
+        <div class="col-lg-8 mx-auto"> -->
           <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+         <!-- <form name="sentMessage" id="contactForm" novalidate="novalidate"> -->
+         <div class="container well">
+         <form action="VehiculoServlet" method="post">
+
+             <c:forEach var="Vehiculo" items="${articulo}">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>ID</label>
-                <input class="form-control" id="ID" type="text" placeholder="ID" required="required" data-validation-required-message="Por favor inserte el Registro.">
+                <input class="form-control" name="ID" type="text" value="${Vehiculo.idVehiculo}" required="required" data-validation-required-message="Por favor inserte el Registro.">
+                
                 <p class="help-block text-danger"></p>
               </div>
             </div>
               <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Modelo</label>
-                <input class="form-control" id="Modelo" type="text" placeholder="Modelo" required="required" data-validation-required-message="Por favor, inserte el modelo.">
+                <input class="form-control" name="modelo" type="text" placeholder="Modelo" value="${Vehiculo.modelo}" required="required" data-validation-required-message="Por favor, inserte el modelo.">
+                
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -67,48 +73,46 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Marca</label>
-                <input class="form-control" id="Sucursal" type="text" placeholder="Ej:Chevrolet" required="required" data-validation-required-message="Por favor, inserte.">
+                <input class="form-control" name="marca" type="text" value="${Vehiculo.marca}" required="required" data-validation-required-message="Por favor, inserte.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Precio</label>
-                <input class="form-control" id="Precio" type="text" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
+                <input class="form-control" name="precio" type="text" value="${Vehiculo.precio}" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Descripción</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                <textarea class="form-control" name="descripcion" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message.">${Vehiculo.descripcion}</textarea>
                 <p class="Porfavor inserte descripción"></p>
               </div>
-              <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Imagen</label>
-        </div>     
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Imagen</label>
+                </div>     
             </div>
               <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Insertar</button>
+              <button type="submit" class="btn btn-primary btn-xl" name="action" value="editarVehiculo" id="sendMessageButton">Guardar</button>
             
            
-              <button type="button" class="btn btn-success btn-xl" id="sendMessageButton">Editar</button>
-           
-            
-              <button type="button" class="btn btn-danger btn-xl" id="sendMessageButton">Eliminar</button
-           
-              <div class="form-group">
-                  
+          
+         
              
-              <button type="button" class="btn btn-info btn-xl" id="sendMessageButton">Consultar</button>
+              <button type="submit" class="btn btn-success btn-xl" name="action" value="cancelarNuevo" id="sendMessageButton">Cancelar</button>
             </div>
-              </div>
+              
+            </c:forEach>
           </form>
+                </div>
              </div>
-        </div>
-      </div>
   </section>
+                
+        
+  
     </body>
 </html>

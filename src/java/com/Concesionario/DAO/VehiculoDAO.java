@@ -40,15 +40,16 @@ public class VehiculoDAO {
 
 	// insertar artículo
 	public boolean insertar(Vehiculo articulo) throws SQLException {
-		String sql = "INSERT INTO articulos (id, codigo, nombre, descripcion, existencia, precio) VALUES (?, ?, ?,?,?,?)";
+		String sql = "INSERT INTO vehiculo (Modelo,Marca, Precio, descripcion) VALUES (?, ?, ?,?)";
 		System.out.println(articulo.getMarca());
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, null);
-		statement.setString(2, articulo.getModelo());
-		statement.setString(3, articulo.getMarca());
-		statement.setDouble(4, articulo.getAnoFabricacion());
+	/*	statement.setString(1, null);  */
+		statement.setString(1, articulo.getModelo());
+		statement.setString(2, articulo.getMarca());
+                statement.setLong(3, articulo.getPrecio());
+		statement.setString(4, articulo.getDescripcion());
 		
 
 		boolean rowInserted = statement.executeUpdate() > 0;
@@ -61,7 +62,7 @@ public class VehiculoDAO {
 	public List<Vehiculo> listarArticulos() throws SQLException {
 
 		List<Vehiculo> listaArticulos = new ArrayList<Vehiculo>();
-		String sql = "SELECT * FROM vehiculo";
+		String sql = "SELECT * FROM vehiculo ORDER BY IdVehiculo";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		Statement statement = connection.createStatement();
@@ -71,9 +72,10 @@ public class VehiculoDAO {
 			int id = resulSet.getInt("IdVehiculo");
 			String modelo = resulSet.getString("Modelo");
 			String marca = resulSet.getString("MARCA");
-			short anoFabricacion = resulSet.getShort("Ano_Fabricacion");
-
-			Vehiculo articulo = new Vehiculo(id, modelo, marca, anoFabricacion);
+			String descripcion = resulSet.getString("descripcion");
+                        long precio = resulSet.getLong("Precio");
+                        
+			Vehiculo articulo = new Vehiculo(id, modelo, marca, precio, descripcion);
 			listaArticulos.add(articulo);
 		}
 		con.desconectar();
@@ -92,7 +94,7 @@ public class VehiculoDAO {
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			articulo = new Vehiculo(res.getInt("IdVehiculo"), res.getString("modelo"), res.getString("marca"), res.getShort("ano_Fabricacion"));
+			articulo = new Vehiculo(res.getInt("IdVehiculo"), res.getString("modelo"), res.getString("marca"), res.getLong("precio"), res.getString("descripcion"));
 		}
 		res.close();
 		con.desconectar();
@@ -103,15 +105,15 @@ public class VehiculoDAO {
 	// actualizar
 	public boolean actualizar(Vehiculo articulo) throws SQLException {
 		boolean rowActualizar = false;
-		String sql = "UPDATE Vehiculo SET Modelo=?,Marca=?,Ano_Fabricacion=? WHERE IdVehiculo=?";
+		String sql = "UPDATE Vehiculo SET Modelo=?,Marca=?,descripcion=?, Precio=? WHERE IdVehiculo=?";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, articulo.getModelo());
 		statement.setString(2, articulo.getMarca());
-		statement.setShort(3, articulo.getAnoFabricacion());
-		
-		statement.setInt(4, articulo.getIdVehiculo());
+		statement.setString(3, articulo.getDescripcion());
+		statement.setLong(4, articulo.getPrecio());
+		statement.setInt(5, articulo.getIdVehiculo());
 
 		rowActualizar = statement.executeUpdate() > 0;
 		statement.close();
@@ -122,7 +124,7 @@ public class VehiculoDAO {
 	//eliminar
 	public boolean eliminar(Vehiculo articulo) throws SQLException {
 		boolean rowEliminar = false;
-		String sql = "DELETE FROM articulos WHERE ID=?";
+		String sql = "DELETE FROM Vehiculo WHERE IdVehiculo=?";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);

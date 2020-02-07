@@ -6,7 +6,6 @@
 package com.Concesionario.Entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Vehiculo.findByIdVehiculo", query = "SELECT v FROM Vehiculo v WHERE v.idVehiculo = :idVehiculo")
     , @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo")
     , @NamedQuery(name = "Vehiculo.findByMarca", query = "SELECT v FROM Vehiculo v WHERE v.marca = :marca")
-    , @NamedQuery(name = "Vehiculo.findByAnoFabricacion", query = "SELECT v FROM Vehiculo v WHERE v.anoFabricacion = :anoFabricacion")})
+    , @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")
+    , @NamedQuery(name = "Vehiculo.findByDescripcion", query = "SELECT v FROM Vehiculo v WHERE v.descripcion = :descripcion")})
 public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,8 +53,13 @@ public class Vehiculo implements Serializable {
     private String marca;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Ano_Fabricacion")
-    private short anoFabricacion;
+    @Column(name = "Precio")
+    private long precio;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 600)
+    @Column(name = "Descripcion")
+    private String descripcion;
 
     public Vehiculo() {
     }
@@ -63,11 +68,12 @@ public class Vehiculo implements Serializable {
         this.idVehiculo = idVehiculo;
     }
 
-    public Vehiculo(Integer idVehiculo, String modelo, String marca, short anoFabricacion) {
+    public Vehiculo(Integer idVehiculo, String modelo, String marca, long precio, String descripcion) {
         this.idVehiculo = idVehiculo;
         this.modelo = modelo;
         this.marca = marca;
-        this.anoFabricacion = anoFabricacion;
+        this.precio = precio;
+        this.descripcion = descripcion;
     }
 
     public Integer getIdVehiculo() {
@@ -94,12 +100,20 @@ public class Vehiculo implements Serializable {
         this.marca = marca;
     }
 
-    public short getAnoFabricacion() {
-        return anoFabricacion;
+    public long getPrecio() {
+        return precio;
     }
 
-    public void setAnoFabricacion(short anoFabricacion) {
-        this.anoFabricacion = anoFabricacion;
+    public void setPrecio(long precio) {
+        this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
@@ -126,11 +140,5 @@ public class Vehiculo implements Serializable {
     public String toString() {
         return "com.Concesionario.Entity.Vehiculo[ idVehiculo=" + idVehiculo + " ]";
     }
-    public List<Vehiculo> findAll(){
-        List<Vehiculo> listadoVehiculos = null;
-        Vehiculo V =null;
-                V.marca="Nissan";
-        listadoVehiculos.add(V);
-        return listadoVehiculos;
-    }
+    
 }

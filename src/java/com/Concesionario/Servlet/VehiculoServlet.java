@@ -90,6 +90,7 @@ public class VehiculoServlet extends HttpServlet {
 				eliminar(request, response);
 				break;
 			default:
+                                index(request, response);
 				break;
 			}			
 		} catch (SQLException e) {
@@ -106,7 +107,40 @@ public class VehiculoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Hola Servlet..");
-		doGet(request, response);
+		/*doGet(request, response); */
+                String action = request.getParameter("action");
+		System.out.println(action);
+		try {
+			switch (action) {
+			case "index":
+				index(request, response);
+				break;
+			case "nuevo":
+				nuevo(request, response);
+				break;
+			case "guardarVehiculo":
+				registrar(request, response);
+				break;
+			case "listarVehiculos":
+				mostrar(request, response);
+				break;
+			case "showedit":
+				showEditar(request, response);
+				break;	
+			case "editarVehiculo":
+				editar(request, response);
+				break;
+			case "eliminar":
+				eliminar(request, response);
+				break;
+                        case "cancelarNuevo":
+                                cancelar(request, response);
+                        default:
+				break;
+			}			
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
 	}
 	
 	private void index (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
@@ -116,18 +150,31 @@ public class VehiculoServlet extends HttpServlet {
 	}
  
 	private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Vehiculo articulo = new Vehiculo(0, request.getParameter("Marca"), request.getParameter("Modelo"), Short.parseShort(request.getParameter("anoFabricacoin")));
+            Vehiculo articulo = new Vehiculo(0, request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"));	
+            
 		articuloDAO.insertar(articulo);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+                 mostrar(request, response);
+	/*	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);  */
 	}
 	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/portafolio.jsp");
+		/* Vehiculo articulo = articuloDAO.obtenerPorId(1);
+		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+                listaVehiculos.add(articulo);
+                
+                request.setAttribute("articulo", listaVehiculos);
+		*/
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/nuevoVehiculo.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+	private void cancelar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        /*
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVehiculos.jsp");
+		dispatcher.forward(request, response);   */
+            mostrar(request,response);
+        }
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVehiculos.jsp");
@@ -143,21 +190,29 @@ public class VehiculoServlet extends HttpServlet {
                 listaVehiculos.add(articulo);
                 request.setAttribute("articulo", listaVehiculos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditar.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/portafolio.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Vehiculo articulo = new Vehiculo(Integer.parseInt(request.getParameter("idVehiculo")), request.getParameter("marca"), request.getParameter("modelo"), Short.parseShort(request.getParameter("anoFabricacion")));
+           /* Integer id = Integer.parseInt(request.getParameter("ID"));
+            String marca = request.getParameter("marca");
+            String PrecioS = request.getParameter("precio");
+            Long precio = Long.parseLong(request.getParameter("precio"));
+            String descripcion = request.getParameter("descripcion");  */
+            Vehiculo articulo = new Vehiculo(Integer.parseInt(request.getParameter("ID")), request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"));
 		articuloDAO.actualizar(articulo);
-		index(request, response);
+	/*	getServletContext().getRequestDispatcher("/Vista/mostrarVehiculos.jsp").forward(request, response);  */
+                mostrar(request, response);
+               /* index(request, response);  */
 	}
 	
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		Vehiculo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
 		articuloDAO.eliminar(articulo);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+                mostrar(request, response);
+	/*	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);  */
 		
 	}
 }
