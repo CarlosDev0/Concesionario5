@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Lab1_Arq_201902</title>
+        <title>Nuevo Vehiculo</title>
   
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -28,7 +28,7 @@
   <link href="css/creative.min.css" rel="stylesheet">
     </head>
     <body id="page-top">
-        <h1>AUTOS</h1>
+        <h1>REGISTRE UN NUEVO VEHICULO</h1>
        <section class="page-section" id="contact">
         <div class="container">
 
@@ -102,11 +102,14 @@
               <button type="submit" class="btn btn-danger btn-xl" name="action" value="cancelarNuevo" id="sendMessageButton">Cancelar</button>
          
              
-              <button type="submit" class="btn btn-warning btn-xl" name="action" value="mostrarVehiculos" id="sendMessageButton">Consultar Vehículos</button>
+              
             </div>
               
             
           </form>
+             <form action="Vehiculo" method="post">
+                <button type="submit" class="btn btn-warning btn-xl" name="action" value="listarVehiculos">Consultar Vehículos</button>
+            </form>
                 </div>
              </div>
   </section>

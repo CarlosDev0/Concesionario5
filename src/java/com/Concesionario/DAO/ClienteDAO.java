@@ -30,16 +30,16 @@ public class ClienteDAO {
 
 	// insertar artículo
 	public boolean insertar(Cliente cliente) throws SQLException {
-		String sql = "INSERT INTO Cliente (IdCliente, nombre, cedula) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO Cliente (nombre, cedula, ciudad, direccion) VALUES (?, ?, ?, ?)";
 		System.out.println(cliente.getNombre());
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, null);
-		statement.setString(2, cliente.getNombre());
-		statement.setString(3, cliente.getCedula());
-		
-		
+	/*	statement.setString(1, null);  */
+		statement.setString(1, cliente.getNombre());
+		statement.setString(2, cliente.getCedula());
+		statement.setString(3, cliente.getCiudad());
+		statement.setString(4, cliente.getDireccion());
 
 		boolean rowInserted = statement.executeUpdate() > 0;
 		statement.close();
@@ -61,8 +61,10 @@ public class ClienteDAO {
 			int id = resulSet.getInt("IdCliente");
 			String nombre = resulSet.getString("nombre");
 			String cedula = resulSet.getString("cedula");
-
-			Cliente _cliente = new Cliente(id, nombre, cedula);
+                        String ciudad = resulSet.getString("ciudad");
+                        String direccion = resulSet.getString("direccion");
+                        
+			Cliente _cliente = new Cliente(id, nombre, cedula,ciudad, direccion);
 			listaCliente.add(_cliente);
 		}
 		con.desconectar();
@@ -81,7 +83,7 @@ public class ClienteDAO {
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			_cliente = new Cliente(res.getInt("IdCliente"), res.getString("nombre"), res.getString("cedula"));
+			_cliente = new Cliente(res.getInt("IdCliente"), res.getString("nombre"), res.getString("cedula"), res.getString("ciudad"),res.getString("direccion"));
 		}
 		res.close();
 		con.desconectar();
@@ -92,14 +94,16 @@ public class ClienteDAO {
 	// actualizar
 	public boolean actualizar(Cliente _cliente) throws SQLException {
 		boolean rowActualizar = false;
-		String sql = "UPDATE Cliente SET nombre=?,cedula=? WHERE IdCliente=?";
+		String sql = "UPDATE Cliente SET nombre=?,cedula=?, ciudad=?, direccion=? WHERE IdCliente=?";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, _cliente.getNombre());
 		statement.setString(2, _cliente.getCedula());
+                statement.setString(3, _cliente.getCiudad());
+                statement.setString(4, _cliente.getDireccion());
 		
-		statement.setInt(3, _cliente.getIdCliente());
+		statement.setInt(5, _cliente.getIdCliente());
 
 		rowActualizar = statement.executeUpdate() > 0;
 		statement.close();

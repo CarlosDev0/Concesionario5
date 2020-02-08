@@ -159,17 +159,11 @@ public class VehiculoServlet extends HttpServlet {
 		articuloDAO.insertar(articulo);
 		
                  mostrar(request, response);
-	/*	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);  */
+	
 	}
 	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		/* Vehiculo articulo = articuloDAO.obtenerPorId(1);
-		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
-                listaVehiculos.add(articulo);
-                
-                request.setAttribute("articulo", listaVehiculos);
-		*/
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/nuevoVehiculo.jsp");
 		dispatcher.forward(request, response);
 	}

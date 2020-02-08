@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Lab1_Arq_201902</title>
+        <title>Edición de Clientes</title>
   
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -28,7 +28,7 @@
   <link href="css/creative.min.css" rel="stylesheet">
     </head>
     <body id="page-top">
-        <h1>AUTOS</h1>
+        <h1>EDICIÓN DE CLIENTE</h1>
        <section class="page-section" id="contact">
         <div class="container">
 
@@ -50,21 +50,21 @@
           <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
          <!-- <form name="sentMessage" id="contactForm" novalidate="novalidate"> -->
          <div class="container well">
-         <form action="VehiculoServlet" method="post">
+         <form action="Cliente" method="post">
 
-             <c:forEach var="Vehiculo" items="${articulo}">
+             <c:forEach var="Cliente" items="${articulo}">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>ID</label>
-                <input class="form-control" name="ID" type="text" value="${Vehiculo.idCliente}" required="required" data-validation-required-message="Por favor inserte el Registro.">
+                <label>ID:</label>
+                <input class="form-control" name="ID" type="text" value="${Cliente.idCliente}" required="required" data-validation-required-message="Por favor inserte el Registro.">
                 
                 <p class="help-block text-danger"></p>
               </div>
             </div>
               <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Modelo</label>
-                <input class="form-control" name="modelo" type="text" placeholder="Modelo" value="${Vehiculo.nombre}" required="required" data-validation-required-message="Por favor, inserte el modelo.">
+                <label>Nombre:</label>
+                <input class="form-control" name="nombre" type="text" placeholder="Modelo" value="${Cliente.nombre}" required="required" data-validation-required-message="Por favor, inserte el modelo.">
                 
                 <p class="help-block text-danger"></p>
               </div>
@@ -72,22 +72,22 @@
               
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Marca</label>
-                <input class="form-control" name="marca" type="text" value="${Vehiculo.cedula}" required="required" data-validation-required-message="Por favor, inserte.">
+                <label>Cédula:</label>
+                <input class="form-control" name="cedula" type="text" value="${Cliente.cedula}" required="required" data-validation-required-message="Por favor, inserte.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Precio</label>
-                <input class="form-control" name="precio" type="text" value="${Vehiculo.ciudad}" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
+                <label>Ciudad</label>
+                <input class="form-control" name="ciudad" type="text" value="${Cliente.ciudad}" placeholder="Ciudad" required="required" data-validation-required-message="Por favor, inserte el tel.">
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Descripción</label>
-                <textarea class="form-control" name="descripcion" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
-                <p class="Porfavor inserte descripción"></p>
+                <label>Dirección</label>
+                <textarea class="form-control" name="direccion" rows="5" placeholder="Dirección" required="required" data-validation-required-message="Please enter a message.">${Cliente.direccion}</textarea>
+                <p class="Porfavor inserte dirección"></p>
               </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile">
@@ -97,7 +97,7 @@
               <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-xl" name="action" value="editarVehiculo" id="sendMessageButton">Guardar</button>
+              <button type="submit" class="btn btn-primary btn-xl" name="action" value="editarCliente" id="sendMessageButton">Guardar</button>
             
            
           

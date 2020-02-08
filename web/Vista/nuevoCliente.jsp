@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Lab1_Arq_201902</title>
+        <title>Nuevo Cliente</title>
   
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -28,7 +28,7 @@
   <link href="css/creative.min.css" rel="stylesheet">
     </head>
     <body id="page-top">
-        <h1>AUTOS</h1>
+        <h1>REGISTRAR NUEVO CLIENTE</h1>
        <section class="page-section" id="contact">
         <div class="container">
 
@@ -46,7 +46,7 @@
         
 
          <div class="container well">
-         <form action="VehiculoServlet" method="post">
+         <form action="Cliente" method="post">
 
              <!--
             <div class="control-group">
@@ -59,8 +59,8 @@
             </div>-->
               <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Modelo</label>
-                <input class="form-control" name="modelo" type="text" placeholder="Modelo" required="required" data-validation-required-message="Por favor, inserte el modelo.">
+                <label>Nombre</label>
+                <input class="form-control" name="nombre" type="text" placeholder="Nombre" required="required" data-validation-required-message="Por favor, inserte el Nombre.">
                 
                 <p class="help-block text-danger"></p>
               </div>
@@ -68,27 +68,24 @@
               
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Marca</label>
-                <input class="form-control" name="marca" type="text" placeholder="Marca" required="required" data-validation-required-message="Por favor, inserte.">
+                <label>Cédula</label>
+                <input class="form-control" name="cedula" type="text" placeholder="Cédula" required="required" data-validation-required-message="Por favor inserte la cédula">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Precio</label>
-                <input class="form-control" name="precio" type="text" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
+                <label>Ciudad</label>
+                <input class="form-control" name="ciudad" type="ciudad" placeholder="Ciudad" required="required" data-validation-required-message="Por favor, inserte la Ciudad">
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Descripción</label>
-                <textarea class="form-control" name="descripcion" rows="5" placeholder="Características Adicionales del Vehículo" required="required" data-validation-required-message="Please enter a message."></textarea>
-                <p class="Porfavor inserte descripción"></p>
+                <label>Dirección</label>
+                <input class="form-control" name="direccion" type="text" placeholder="Dirección" required="required" data-validation-required-message="Por favor, inserte la Dirección">
+                <p class="Porfavor inserte Dirección"></p>
               </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Imagen</label>
-                </div>     
+                
             </div>
               <br>
             <div id="success"></div>
@@ -96,19 +93,18 @@
               
             
               
-              <button type="submit" class="btn btn-success btn-xl" name="action" value="guardarVehiculo" id="sendMessageButton">Guardar</button>
+              <button type="submit" class="btn btn-success btn-xl" name="action" value="guardarCliente" id="sendMessageButton">Guardar</button>
            
             
               <button type="submit" class="btn btn-danger btn-xl" name="action" value="cancelarNuevo" id="sendMessageButton">Cancelar</button>
-         
-             
-              <button type="submit" class="btn btn-warning btn-xl" name="action" value="mostrarVehiculos" id="sendMessageButton">Consultar Vehículos</button>
             </div>
-              
-            
           </form>
-                </div>
+            <form action="Cliente" method="post">
+                <button type="submit" class="btn btn-warning btn-xl" name="action" value="listarClientes">Consultar Clientes</button>
+            </form>
              </div>
+                </div>
+             
   </section>
                 
         

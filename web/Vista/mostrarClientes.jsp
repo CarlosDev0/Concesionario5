@@ -22,21 +22,24 @@
 		 <th> ID</th>
 		 <th> NOMBRE</th>
 		 <th> CEDULA</th>
+                 <th> CIUDAD</th>
+                 <th> DIRECCIÓN</th>
 		 
-		 
-		 <th colspan=2>ACCIONES</th>
+		 <th colspan=3>ACCIONES</th>
 		</tr>
 		<c:forEach var="Cliente" items="${lista}">
 			<tr>
 				<td><c:out value="${Cliente.idCliente}"/></td>
 				<td><c:out value="${Cliente.nombre}"/></td>
 				<td><c:out value="${Cliente.cedula}"/></td>
-				
+                                <td><c:out value="${Cliente.ciudad}"/></td>
+                                <td><c:out value="${Cliente.direccion}"/></td>
                                 
 				
 				<td><a href="Cliente?action=showedit&id=<c:out value="${Cliente.idCliente}" />">Editar</a></td>
 				<td><a href="Cliente?action=eliminar&id=<c:out value="${Cliente.idCliente}"/>">Eliminar</a> </td>				
-                                </tr><td><a href="Cliente?action=nuevo">Nuevo</a> </td>
+                                <td><a href="Cliente?action=nuevo">Nuevo</a> </td>
+                        </tr>
 		</c:forEach>
 	</table>
 

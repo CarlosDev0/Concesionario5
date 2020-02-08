@@ -150,16 +150,16 @@ public class ClienteServlet extends HttpServlet {
 			case "nuevo":
 				nuevo(request, response);
 				break;
-			case "guardarVehiculo":
+			case "guardarCliente":
 				registrar(request, response);
 				break;
-			case "listarVehiculos":
+			case "listarClientes":
 				mostrar(request, response);
 				break;
 			case "showedit":
 				showEditar(request, response);
 				break;	
-			case "editarVehiculo":
+			case "editarCliente":
 				editar(request, response);
 				break;
 			case "eliminar":
@@ -181,15 +181,18 @@ public class ClienteServlet extends HttpServlet {
 	}
  
 	private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Cliente articulo = new Cliente(0, request.getParameter("nombre"), request.getParameter("cedula") );
+		Cliente articulo = new Cliente(0, request.getParameter("nombre"), request.getParameter("cedula"), request.getParameter("ciudad"), request.getParameter("direccion") );
 		_clienteDAO.insertar(articulo);
 		
+                mostrar(request, response);
+                /*  
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);*/
 	}
 	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/register.jsp");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/nuevoCliente.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -214,16 +217,18 @@ public class ClienteServlet extends HttpServlet {
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Cliente articulo = new Cliente(Integer.parseInt(request.getParameter("idCliente")), request.getParameter("Nombre"), request.getParameter("cedula"));
+		Cliente articulo = new Cliente(Integer.parseInt(request.getParameter("ID")), request.getParameter("nombre"), request.getParameter("cedula"), request.getParameter("ciudad"), request.getParameter("direccion"));
 		_clienteDAO.actualizar(articulo);
-		index(request, response);
+                 mostrar(request, response);
+	/*	index(request, response); */
 	}
 	
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("idCliente")));
+            Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
 		_clienteDAO.eliminar(articulo);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+                mostrar(request, response);
+	/*	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);  */
 		
 	}
         
