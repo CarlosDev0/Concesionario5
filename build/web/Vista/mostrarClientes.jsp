@@ -12,7 +12,7 @@
 	<h1>LISTA DE CLIENTES</h1>
 	<table>
 		<tr>
-			<td><a href="Vehiculo?action=index" >Ir al menú</a> </td>
+			<td><a onclick="pageRedirect()" >Ir al menú</a> </td>
                         
 		</tr>
 	</table>
@@ -36,9 +36,15 @@
 				
 				<td><a href="Cliente?action=showedit&id=<c:out value="${Cliente.idCliente}" />">Editar</a></td>
 				<td><a href="Cliente?action=eliminar&id=<c:out value="${Cliente.idCliente}"/>">Eliminar</a> </td>				
-			</tr>
+                                </tr><td><a href="Cliente?action=nuevo">Nuevo</a> </td>
 		</c:forEach>
 	</table>
-	
+
+        <script>
+        function pageRedirect() {
+            window.history.back();
+        }     
+        </script>
+
 </body>
 </html>

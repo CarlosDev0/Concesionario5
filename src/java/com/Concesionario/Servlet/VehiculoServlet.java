@@ -65,7 +65,10 @@ public class VehiculoServlet extends HttpServlet {
 		System.out.println("Hola Servlet..");
 		String action = request.getParameter("action");
 		System.out.println(action);
+                
+                
 		try {
+                    
 			switch (action) {
 			case "index":
 				index(request, response);
@@ -93,6 +96,7 @@ public class VehiculoServlet extends HttpServlet {
                                 index(request, response);
 				break;
 			}			
+                    
 		} catch (SQLException e) {
 			e.getStackTrace();
 		}

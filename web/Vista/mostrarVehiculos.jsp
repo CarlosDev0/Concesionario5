@@ -12,7 +12,7 @@
 	<h1>PORTAFOLIO DE VEHÍCULOS</h1>
 	<table>
 		<tr>
-			<td><a href="/../" >Ir al menú</a> </td>
+			<td><a onclick="pageRedirect()" >Ir al menú</a> </td>
                         
 		</tr>
 	</table>
@@ -42,6 +42,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+        <script>
+        function pageRedirect() {
+            window.history.back();
+        }     
+        </script>
 </body>
 </html>

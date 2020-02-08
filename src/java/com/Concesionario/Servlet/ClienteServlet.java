@@ -45,9 +45,9 @@ public class ClienteServlet extends HttpServlet {
 			// TODO: handle exception
 		}
 	}
-
+/*
     @EJB
-    private ClienteFacadeLocal clienteFacade;
+    private ClienteFacadeLocal clienteFacade;  */
 
     public ClienteServlet() {
             super();
@@ -62,11 +62,13 @@ public class ClienteServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            /* TODO output your page here. You may use following sample code. 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -78,7 +80,7 @@ public class ClienteServlet extends HttpServlet {
             out.println("</html>");
         }
     }
-
+*/
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -136,7 +138,41 @@ public class ClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        System.out.println("Hola Servlet..");
+		/*doGet(request, response); */
+                String action = request.getParameter("action");
+		System.out.println(action);
+		try {
+			switch (action) {
+			case "index":
+				index(request, response);
+				break;
+			case "nuevo":
+				nuevo(request, response);
+				break;
+			case "guardarVehiculo":
+				registrar(request, response);
+				break;
+			case "listarVehiculos":
+				mostrar(request, response);
+				break;
+			case "showedit":
+				showEditar(request, response);
+				break;	
+			case "editarVehiculo":
+				editar(request, response);
+				break;
+			case "eliminar":
+				eliminar(request, response);
+				break;
+                        case "cancelarNuevo":
+                                cancelar(request, response);
+                        default:
+				break;
+			}			
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
     }
     private void index (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
@@ -167,12 +203,13 @@ public class ClienteServlet extends HttpServlet {
 	}	
 	
 	private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("idCliente")));
+            int id = Integer.parseInt(request.getParameter("id"));
+            Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
 		List<Cliente> listaCliente = new ArrayList<Cliente>();
                 listaCliente.add(articulo);
                 request.setAttribute("articulo", listaCliente);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditar.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditarCliente.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -189,14 +226,22 @@ public class ClienteServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 		
 	}
+        
+        private void cancelar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        /*
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVehiculos.jsp");
+		dispatcher.forward(request, response);   */
+            mostrar(request,response);
+        }
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
+        /*
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }// </editor-fold>*/
 
 }
