@@ -21,12 +21,12 @@
  
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <title>Lab1_Arq_201902</title>
+        <title>Ventas</title>
     </head>
     <body>
         <div class="container well">
         <h1>Informacion de Venta</h1>
- <form action="./VentaServlet" method="POST" enctype="multipart/form-data">
+ <form action="/VentaServlet" method="POST" enctype="multipart/form-data">
  <table>
  <tr>
  <th>Id Carro</th>
@@ -73,23 +73,7 @@
             </form>
             <br>
             
-            <table border="1" class="table table-striped">
-                <th scope="row">Id Carro</th>
-                <th>Cliente ID</th>
-                <th>Fecha Venta</th>
-                  <th>Valor Venta</th>
-                
-               
-                
-                <c:forEach items="${allSalls}" var="venta">
-                    <tr>
-                        <td>${venta.IdCarro}</td>
-                        <td>${venta.Cedula}</td>
-                        <td>${venta.Date}</td>
-                        <th>$(venta.ValorVenta)</th>
-                    </tr>
-                </c:forEach>
-           </table>
+          
     </div>
 
     </body>

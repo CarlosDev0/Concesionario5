@@ -37,7 +37,7 @@
               <tr>
                   <th><a href="Vehiculo?action=listarVehiculos">|Productos|</a></th>
                   <th><a href="Cliente?action=listarClientes">|Clientes|</a></th>
-                  <th><a href="Ventas?action=listarVentas">|Ventas|</a></th>
+                  <th><a href="Venta?action=listarVentas">|Ventas|</a></th>
               </tr>
           </tbody>
       </table>
