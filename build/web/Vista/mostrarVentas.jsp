@@ -46,8 +46,9 @@
                         <td>${venta.idVehiculo}</td>
                         <td>${venta.idCliente}</td>
                         <td>${venta.nombreVendedor}</td>
-                        <td>$(venta.precioVentaUnitario)</td>
-                        <td>$(venta.fechaVenta)</td>
+                        <td></td>
+                        <td></td>
+                       <!-- <td>${venta.fechaVenta}</td>  -->
                         
                         <td><a href="Venta?action=showedit&id=<c:out value="${venta.idVenta}" />">Editar</a></td>
 			<td><a href="Venta?action=eliminar&id=<c:out value="${venta.idVenta}" />">Eliminar</a> </td>				

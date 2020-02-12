@@ -77,7 +77,7 @@ public class Venta implements Serializable {
     @Size(max = 300)
     @Column(name = "Comentario")
     private String comentario;
-    
+    private String PrecioVentaString;
 
     public Venta() {
     }
@@ -85,8 +85,8 @@ public class Venta implements Serializable {
     public Venta(Integer idVenta) {
         this.idVenta = idVenta;
     }
-
-    public Venta(Integer idVenta, int idCliente, int idVehiculo, String nombreVendedor, short cantidad, BigDecimal PrecioVentaUnitario, Date FechaVenta) {
+    
+    public Venta(Integer idVenta, int idCliente, int idVehiculo, String nombreVendedor, short cantidad, BigDecimal PrecioVentaUnitario, Date FechaVenta, String PrecioVentaString) {
         this.idVenta = idVenta;
         this.idCliente = idCliente;
         this.idVehiculo = idVehiculo;
@@ -94,6 +94,8 @@ public class Venta implements Serializable {
         this.cantidad = cantidad;
         this.precioVentaUnitario =PrecioVentaUnitario;
         this.fechaVenta = FechaVenta;
+        this.PrecioVentaString = PrecioVentaString;
+        
         
     }
 
@@ -121,6 +123,10 @@ public class Venta implements Serializable {
         this.idVehiculo = idVehiculo;
     }
 
+    public void setPrecioVentaString(BigDecimal pVU){
+        this.PrecioVentaString = String.valueOf(pVU.doubleValue());
+              
+    }
     public Short getCantidad() {
         return cantidad;
     }
@@ -131,6 +137,10 @@ public class Venta implements Serializable {
 
     public Date getFechaVenta() {
         return fechaVenta;
+    }
+    
+    public String getPrecioVentaString(){
+        return PrecioVentaString;
     }
 
     public void setFechaVenta(Date fechaVenta) {

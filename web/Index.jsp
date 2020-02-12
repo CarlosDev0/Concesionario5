@@ -22,7 +22,7 @@
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="css/creative.min.css" rel="stylesheet">
   <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
-        <title>Lab1_Arq_201902</title>
+        <title>Concesionario C&Y</title>
     </head>
     <body id="page-top">
          

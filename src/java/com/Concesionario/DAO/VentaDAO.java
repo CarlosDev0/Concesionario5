@@ -72,8 +72,12 @@ public class VentaDAO {
                         short cantidad = resulSet.getShort("Cantidad");
                         BigDecimal previoVentaUnitario = resulSet.getBigDecimal("PrecioVentaUnitario");
                         Date fechaVenta = resulSet.getDate("FechaVenta");
-                        
-			Venta _venta = new Venta(idVenta, idCliente, idVehiculo, NombreVendedor, cantidad, previoVentaUnitario, fechaVenta);
+                        String PVS = "";
+                        if (previoVentaUnitario !=null)
+                            PVS = String.valueOf(previoVentaUnitario.doubleValue());    
+			Venta _venta = new Venta(idVenta, idCliente, idVehiculo, NombreVendedor, cantidad, previoVentaUnitario, fechaVenta, PVS);
+                        if(previoVentaUnitario!=null)
+                            _venta.setPrecioVentaString(previoVentaUnitario); 
 			listaVentas.add(_venta);
 		}
 		con.desconectar();
@@ -92,7 +96,11 @@ public class VentaDAO {
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getShort("Cantidad"), res.getBigDecimal("PrecioVentaUnitario"), res.getDate("FechaVenta"));
+                 //   res.getBigDecimal("PrecioVentaUnitario")
+                    String PVS="";
+                    if (res.getBigDecimal("PrecioVentaUnitario") !=null)
+                    PVS = String.valueOf(res.getBigDecimal("PrecioVentaUnitario").doubleValue());    
+			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getShort("Cantidad"), res.getBigDecimal("PrecioVentaUnitario"), res.getDate("FechaVenta"), PVS);
 		}
 		res.close();
 		con.desconectar();
