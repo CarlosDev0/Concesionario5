@@ -68,8 +68,12 @@
                  <th> <input type="date" name="FechaVenta" class="form-control" placeholder="Ej:10000000" required="false" /></th>
             </tr>
             <tr>
+                <th> Nombre Vendedor</th>
+                 <th> <input type="text" name="NombreVendedor" class="form-control" placeholder="Vendedor" required="false" /></th>
+            </tr>
+            <tr>
                 <th> Valor Venta</th>
-                 <th> <input type="number" name="ValorVenta" class="form-control" placeholder="Ej:10000000" required="false" /></th>
+                 <th> <input type="number" name="PrecioVentaTotal" class="form-control" placeholder="Ej:10000000" required="false" /></th>
             </tr>
             
             <div class="break"></div>                        

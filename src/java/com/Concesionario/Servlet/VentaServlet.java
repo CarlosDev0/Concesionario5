@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -83,6 +84,9 @@ public class VentaServlet extends HttpServlet {
                 {
                     case "listarVentas":
                         mostrar(request,response);
+                        break;
+                    case "showEdit":
+                        showEditar(request,response);
                         break;
                     case "nuevo":
                         List<Cliente> listaCliente= _clienteDAO.listarClientes();
@@ -151,16 +155,24 @@ public class VentaServlet extends HttpServlet {
        
         String sDate1="31/12/1998";  
         Date date1=null;
-        try {  
-            date1=new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechaVenta"));
-        } catch (ParseException ex) {
-            Logger.getLogger(VentaServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+       int Id = Integer.parseInt(request.getParameter("Vehiculo"));
+       String nv = request.getParameter("NombreVendedor"); 
+       Short Q = Short.parseShort(request.getParameter("Cantidad"));
        
-        Venta _venta = new Venta(0, Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("NombreVendedor"), Short.parseShort(request.getParameter("cantidad")), BigDecimal.valueOf(20.234), date1, "");	
+       //Venta _venta = new Venta(0, Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("NombreVendedor"), Short.parseShort(request.getParameter("Cantidad")), BigDecimal.valueOf(20.234), date1, "", Integer.parseInt(request.getParameter("PrecioVentaTotal")));	
+        Venta _venta = new Venta(0, Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("NombreVendedor"), Short.parseShort(request.getParameter("Cantidad")), date1, Integer.parseInt(request.getParameter("PrecioVentaTotal")));	
             
 		ventaDAO.insertar(_venta);
                  mostrar(request, response);
-	
+    }
+    private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		Venta _venta = ventaDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		List<Venta> listaVentas = new ArrayList<Venta>();
+                listaVentas.add(_venta);
+                request.setAttribute("articulo", listaVentas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/portafolio.jsp");
+		dispatcher.forward(request, response);
 	}
 }

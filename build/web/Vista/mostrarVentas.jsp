@@ -46,7 +46,7 @@
                         <td>${venta.idVehiculo}</td>
                         <td>${venta.idCliente}</td>
                         <td>${venta.nombreVendedor}</td>
-                        <td></td>
+                        <td>${venta.precioVentaTotal}</td>
                         <td></td>
                        <!-- <td>${venta.fechaVenta}</td>  -->
                         

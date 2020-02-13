@@ -44,6 +44,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Venta.findByComentario", query = "SELECT v FROM Venta v WHERE v.comentario = :comentario")})
 public class Venta implements Serializable {
 
+    @Column(name = "PrecioVentaTotal")
+    private Integer precioVentaTotal;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,16 +89,16 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
     
-    public Venta(Integer idVenta, int idCliente, int idVehiculo, String nombreVendedor, short cantidad, BigDecimal PrecioVentaUnitario, Date FechaVenta, String PrecioVentaString) {
+    public Venta(Integer idVenta, int idCliente, int idVehiculo, String nombreVendedor, short cantidad, Date FechaVenta, Integer precioVentaTotal) {
         this.idVenta = idVenta;
         this.idCliente = idCliente;
         this.idVehiculo = idVehiculo;
         this.nombreVendedor = nombreVendedor;
         this.cantidad = cantidad;
-        this.precioVentaUnitario =PrecioVentaUnitario;
+        //this.precioVentaUnitario =PrecioVentaUnitario;
         this.fechaVenta = FechaVenta;
         this.PrecioVentaString = PrecioVentaString;
-        
+        this.precioVentaTotal = precioVentaTotal;
         
     }
 
@@ -212,6 +215,14 @@ public class Venta implements Serializable {
     @Override
     public String toString() {
         return "com.Concesionario.Entity.Venta[ idVenta=" + idVenta + " ]";
+    }
+
+    public Integer getPrecioVentaTotal() {
+        return precioVentaTotal;
+    }
+
+    public void setPrecioVentaTotal(Integer precioVentaTotal) {
+        this.precioVentaTotal = precioVentaTotal;
     }
     
 }

@@ -37,7 +37,7 @@ public class VentaDAO {
 
 	// insertar artículo
 	public boolean insertar(Venta venta) throws SQLException {
-		String sql = "INSERT INTO Ventas (IdVenta, IdCliente, IdVehiculo, NombreVendedor) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Ventas (IdVenta, IdCliente, IdVehiculo, NombreVendedor, PrecioVentaTotal) VALUES (?, ?, ?, ?, ?)";
 		System.out.println(venta.getIdVehiculo());
 		con.conectar();
 		connection = con.getJdbcConnection();
@@ -46,6 +46,7 @@ public class VentaDAO {
 		statement.setInt(2, venta.getIdCliente());
 		statement.setInt(3, venta.getIdVehiculo());
 		statement.setString(4, venta.getNombreVendedor());
+                statement.setInt(5, venta.getPrecioVentaTotal());
 		
 
 		boolean rowInserted = statement.executeUpdate() > 0;
@@ -70,14 +71,12 @@ public class VentaDAO {
 			int idCliente = resulSet.getInt("IdCliente");
                         String NombreVendedor = resulSet.getString("NombreVendedor");
                         short cantidad = resulSet.getShort("Cantidad");
-                        BigDecimal previoVentaUnitario = resulSet.getBigDecimal("PrecioVentaUnitario");
+
                         Date fechaVenta = resulSet.getDate("FechaVenta");
-                        String PVS = "";
-                        if (previoVentaUnitario !=null)
-                            PVS = String.valueOf(previoVentaUnitario.doubleValue());    
-			Venta _venta = new Venta(idVenta, idCliente, idVehiculo, NombreVendedor, cantidad, previoVentaUnitario, fechaVenta, PVS);
-                        if(previoVentaUnitario!=null)
-                            _venta.setPrecioVentaString(previoVentaUnitario); 
+                        Integer PrecioVentaTotal=resulSet.getInt("PrecioVentaTotal");
+
+                        Venta _venta = new Venta(idVenta, idCliente, idVehiculo, NombreVendedor, cantidad, fechaVenta, PrecioVentaTotal);
+
 			listaVentas.add(_venta);
 		}
 		con.desconectar();
@@ -96,11 +95,8 @@ public class VentaDAO {
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-                 //   res.getBigDecimal("PrecioVentaUnitario")
-                    String PVS="";
-                    if (res.getBigDecimal("PrecioVentaUnitario") !=null)
-                    PVS = String.valueOf(res.getBigDecimal("PrecioVentaUnitario").doubleValue());    
-			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getShort("Cantidad"), res.getBigDecimal("PrecioVentaUnitario"), res.getDate("FechaVenta"), PVS);
+                 
+			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getShort("Cantidad"), res.getDate("FechaVenta"), res.getInt("PrecioVentaTotal"));
 		}
 		res.close();
 		con.desconectar();
