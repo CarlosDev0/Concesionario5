@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Lab1_Arq_201902</title>
+        <title>Ventas</title>
   
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -28,6 +28,11 @@
   <link href="css/creative.min.css" rel="stylesheet">
     </head>
     <body id="page-top">
+        <table>
+		<tr>
+			<td><a href="http://localhost:3702/Concesionario5/" >Menú Principal</a> </td>
+		</tr>
+	</table>
         <h1>AUTOS</h1>
        <section class="page-section" id="contact">
         <div class="container">
@@ -81,6 +86,12 @@
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Precio</label>
                 <input class="form-control" name="precio" type="text" value="${Vehiculo.precio}" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Matrícula</label>
+                <input class="form-control" name="Matricula" type="text" value="${Vehiculo.matricula}" placeholder="MK5200" required="required" data-validation-required-message="Por favor, inserte la matrícula.">
               </div>
             </div>
             <div class="control-group">

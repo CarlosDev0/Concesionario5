@@ -159,9 +159,9 @@ public class VehiculoServlet extends HttpServlet {
 	}
  
 	private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-            Vehiculo articulo = new Vehiculo(0, request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"));	
-            
-		articuloDAO.insertar(articulo);
+            Vehiculo vehiculoNuevo = new Vehiculo(0, request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"), request.getParameter("Matricula"));	
+            vehiculoFacade.create(vehiculoNuevo);
+		//articuloDAO.insertar(vehiculoNuevo);
 		
                  mostrar(request, response);
 	
@@ -189,7 +189,8 @@ public class VehiculoServlet extends HttpServlet {
 	}	
 	
 	private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Vehiculo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		//Vehiculo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+                Vehiculo articulo = vehiculoFacade.find(Integer.parseInt(request.getParameter("id")));
 		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
                 listaVehiculos.add(articulo);
                 request.setAttribute("articulo", listaVehiculos);
@@ -199,24 +200,20 @@ public class VehiculoServlet extends HttpServlet {
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-           /* Integer id = Integer.parseInt(request.getParameter("ID"));
-            String marca = request.getParameter("marca");
-            String PrecioS = request.getParameter("precio");
-            Long precio = Long.parseLong(request.getParameter("precio"));
-            String descripcion = request.getParameter("descripcion");  */
-            Vehiculo articulo = new Vehiculo(Integer.parseInt(request.getParameter("ID")), request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"));
-		articuloDAO.actualizar(articulo);
+           
+            Vehiculo vehiculoActualizar = new Vehiculo(Integer.parseInt(request.getParameter("ID")), request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"),request.getParameter("Matricula"));
+            vehiculoFacade.edit(vehiculoActualizar);	
+            //articuloDAO.actualizar(vehiculoActualizar);
 	/*	getServletContext().getRequestDispatcher("/Vista/mostrarVehiculos.jsp").forward(request, response);  */
                 mostrar(request, response);
                /* index(request, response);  */
 	}
 	
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Vehiculo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		articuloDAO.eliminar(articulo);
+		//Vehiculo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+                Vehiculo vehiculoAEliminar = vehiculoFacade.find(Integer.parseInt(request.getParameter("id")));
+		//articuloDAO.eliminar(articulo);
+                vehiculoFacade.remove(vehiculoAEliminar);
                 mostrar(request, response);
-	/*	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);  */
-		
 	}
 }

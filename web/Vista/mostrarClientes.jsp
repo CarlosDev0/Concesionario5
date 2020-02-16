@@ -1,29 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administrar Artículos</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+ 
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<title>Administrar Clientes</title>
 </head>
 <body>
-	<h1>LISTA DE CLIENTES</h1>
+	
 	<table>
 		<tr>
-			<td><a onclick="pageRedirect()" >Ir al menú</a> </td>
-                        
+			<td><a href="http://localhost:3702/Concesionario5/" >MenÃº Principal</a> </td>
 		</tr>
 	</table>
-	
-	<table border="1" width="100%">
+	<div class="container well">
+            <h1>LISTA DE CLIENTES</h1>
+            <table border="1" class="table table-striped">
 		<tr>
-		 <th> ID</th>
+		 <th scope="row"> ID</th>
 		 <th> NOMBRE</th>
 		 <th> CEDULA</th>
                  <th> CIUDAD</th>
-                 <th> DIRECCIÓN</th>
+                 <th> DIRECCIÃ“N</th>
 		 
 		 <th colspan=3>ACCIONES</th>
 		</tr>
@@ -48,6 +55,6 @@
             window.history.back();
         }     
         </script>
-
+        </div>
 </body>
 </html>

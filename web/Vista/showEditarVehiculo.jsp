@@ -18,7 +18,7 @@
             <c:forEach var="Vehiculo" items="${articulo}">
                 <table>
                     <tr>
-                        <th><label>IdCliente</label></th>
+                        <th><label>IdVehiculo</label></th>
                         <th><input type="text" placeholder="Enter IdVehiculo" value="${Vehiculo.idVehiculo}" class="form-control" name="idVehiculo" required=""></th>
                     </tr>
                     <tr>
@@ -28,6 +28,10 @@
                      <tr>
                         <th><label>Modelo</label></th>
                         <th><input type="text" placeholder="Enter Modelo" class="form-control" value="${Vehiculo.modelo}" name="modelo" required=""></th>
+                    </tr>
+                    <tr>
+                        <th><label>Matrícula</label></th>
+                        <th><input type="text" placeholder="Enter Matrícula" class="form-control" value="${Vehiculo.matricula}" name="Matricula" required=""></th>
                     </tr>
                     <tr>
                         <th><label>Año Fabricacion</label></th>

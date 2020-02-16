@@ -11,6 +11,8 @@ import com.Concesionario.DAO.VehiculoDAO;
 import com.Concesionario.Entity.Cliente;
 import com.Concesionario.Entity.Vehiculo;
 import com.Concesionario.Entity.Venta;
+import com.Concesionario.JavaBeans.ClienteFacadeLocal;
+import com.Concesionario.JavaBeans.VehiculoFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -22,6 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,11 +44,11 @@ public class VentaServlet extends HttpServlet {
     VehiculoDAO _vehiculoDAO;
     
     public void init() {
-            String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
+          /*  String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
 		String jdbcUsername = "carlos";
 		String jdbcPassword = "carlos";
                
-
+            */
 		try {
  
 			ventaDAO = new VentaDAO();
@@ -66,6 +69,10 @@ public class VentaServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @EJB
+    private VehiculoFacadeLocal vehiculoFacade; 
+    private ClienteFacadeLocal clienteFacade; 
+    
     public VentaServlet(){
         super();
     }
@@ -144,11 +151,28 @@ public class VentaServlet extends HttpServlet {
      */
     
     private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVentas.jsp");
-		List<Venta> listaVentas= ventaDAO.listarVentas();
-		request.setAttribute("lista", listaVentas);
-                System.out.println("Mostrar2");
-		dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVentas.jsp");
+            List<Venta> listaVentas= ventaDAO.listarVentas();
+            for (Venta _venta : listaVentas) {
+                int idV = _venta.getIdVehiculo();
+                Vehiculo _vehiculo = vehiculoFacade.find(idV);
+                _venta.setmarcaVehiculo(_vehiculo.getMarca()+" - "+_vehiculo.getModelo());
+                int idC = _venta.getIdCliente();
+                Cliente _cliente = _clienteDAO.obtenerPorId(idC);
+                _venta.setNombreCliente(_cliente.getNombre());
+                //Cliente _cliente = clienteFacade.find(idC);
+                //_venta.setNombreCliente(_cliente.getNombre());
+            }
+            // nombreCliente
+            for (Venta _venta : listaVentas) {
+                int idV = _venta.getIdVehiculo();
+                Vehiculo _vehiculo = vehiculoFacade.find(idV);
+                _venta.setmarcaVehiculo(_vehiculo.getMarca()+" - "+_vehiculo.getModelo());
+            }
+            
+            request.setAttribute("lista", listaVentas);
+            System.out.println("Mostrar2");
+            dispatcher.forward(request, response);
 	}
     
     private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

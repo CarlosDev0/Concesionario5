@@ -24,6 +24,11 @@
         <title>Ventas</title>
     </head>
     <body>
+        <table>
+		<tr>
+			<td><a href="http://localhost:3702/Concesionario5/" >Menú Principal</a> </td>
+		</tr>
+	</table>
         <div class="container well">
         <h1>Registrar Nueva Venta</h1>
  <form action="VentaServlet" method="POST" >

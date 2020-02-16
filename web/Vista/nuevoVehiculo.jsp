@@ -57,16 +57,7 @@
                 <p class="help-block text-danger"></p>
               </div> 
             </div>-->
-              <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Modelo</label>
-                <input class="form-control" name="modelo" type="text" placeholder="Modelo" required="required" data-validation-required-message="Por favor, inserte el modelo.">
-                
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-              
-            <div class="control-group">
+             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Marca</label>
                 <input class="form-control" name="marca" type="text" placeholder="Marca" required="required" data-validation-required-message="Por favor, inserte.">
@@ -75,8 +66,24 @@
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Modelo</label>
+                <input class="form-control" name="modelo" type="text" placeholder="Modelo" required="required" data-validation-required-message="Por favor, inserte el modelo.">
+                
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+              
+            
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Precio</label>
                 <input class="form-control" name="precio" type="text" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
+              </div>
+            </div>
+             <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Matrícula</label>
+                <input class="form-control" name="Matricula" type="text" placeholder="Ej:KL2000000" required="required" data-validation-required-message="Por favor, la matrícula.">
               </div>
             </div>
             <div class="control-group">

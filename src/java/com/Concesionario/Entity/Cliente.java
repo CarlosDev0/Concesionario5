@@ -63,7 +63,8 @@ public class Cliente implements Serializable {
     @Size(max = 30)
     @Column(name = "Celular")
     private String celular;
-
+    
+    
     public Cliente() {
     }
 
@@ -78,6 +79,7 @@ public class Cliente implements Serializable {
         this.ciudad = ciudad;
         this.direccion = direccion;
     }
+    
 
     public Integer getIdCliente() {
         return idCliente;

@@ -81,7 +81,10 @@ public class Venta implements Serializable {
     @Column(name = "Comentario")
     private String comentario;
     private String PrecioVentaString;
+    private String nombreCliente;
 
+    private String marcaVehiculo;
+    
     public Venta() {
     }
 
@@ -102,6 +105,19 @@ public class Venta implements Serializable {
         
     }
 
+    public void setmarcaVehiculo(String marca){
+        this.marcaVehiculo = marca;
+    }
+    public String getMarcaVehiculo(){
+        return marcaVehiculo;
+    }
+        public void setNombreCliente(String _nombreCliente){
+        this.nombreCliente = _nombreCliente;
+    }
+    
+    public String getNombreCliente(){
+        return nombreCliente;
+    }
     public Integer getIdVenta() {
         return idVenta;
     }

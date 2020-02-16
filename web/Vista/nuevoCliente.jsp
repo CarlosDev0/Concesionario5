@@ -48,15 +48,7 @@
          <div class="container well">
          <form action="Cliente" method="post">
 
-             <!--
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>ID</label>
-                <input class="form-control" name="ID" type="text" required="required" data-validation-required-message="Por favor inserte el Registro.">
-                
-                <p class="help-block text-danger"></p>
-              </div> 
-            </div>-->
+          
               <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Nombre</label>

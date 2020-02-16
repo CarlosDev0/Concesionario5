@@ -1,39 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administrar Artículos</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+ 
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<title>Administrar Vehiculos</title>
 </head>
 <body>
-	<h1>PORTAFOLIO DE VEHÍCULOS</h1>
+	
 	<table>
 		<tr>
-			<td><a onclick="pageRedirect()" >Ir al menú</a> </td>
-                        
+			<td><a href="http://localhost:3702/Concesionario5/" >MenÃº Principal</a> </td>
 		</tr>
 	</table>
-	
-	<table border="1" width="100%">
-		<tr>
-		 <td> ID</td>
-		 <td> MARCA</td>
-		 <td> MODELO</td>
-		 <td>DESCRIPCION</td>
-		 <td>PRECIO</td>
-                 
-		 <td colspan=3>ACCIONES</td>
-		</tr>
-		<c:forEach var="Vehiculo" items="${lista}">
-			<tr>
+	  <div class="container well">
+              <h1>PORTAFOLIO DE VEHÃCULOS</h1>
+            <table border="1" class="table table-striped">
+                    <tr>
+                     <th scope="row"> ID</th>
+                     <th> MARCA</th>
+                     <th> MODELO</th>
+                     <th>DESCRIPCION</th>
+                     <th>PRECIO</th>
+                     <th>MATRÃCULA</th>
+
+                     <th colspan=3>ACCIONES</th>
+                    </tr>
+                    <c:forEach var="Vehiculo" items="${lista}">
+                            <tr>
 				<td><c:out value="${Vehiculo.idVehiculo}"/></td>
 				<td><c:out value="${Vehiculo.marca}"/></td>
 				<td><c:out value="${Vehiculo.modelo}"/></td>
 				<td><c:out value="${Vehiculo.descripcion}"/></td>  
                                 <td><c:out value="${Vehiculo.precio}"/></td>
+                                <td><c:out value="${Vehiculo.matricula}"/></td>
                                 
 				
 				<td><a href="Vehiculo?action=showedit&id=<c:out value="${Vehiculo.idVehiculo}" />">Editar</a></td>
@@ -47,5 +58,7 @@
             window.history.back();
         }     
         </script>
+        
+        </div>
 </body>
 </html>

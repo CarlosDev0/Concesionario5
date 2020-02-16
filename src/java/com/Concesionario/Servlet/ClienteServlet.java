@@ -33,10 +33,7 @@ public class ClienteServlet extends HttpServlet {
 	ClienteDAO _clienteDAO;
  
 	public void init() {
-           /*     String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
-		String jdbcUsername = "carlos";
-		String jdbcPassword = "carlos";
-             */  
+      
 
 		try {
  
@@ -138,8 +135,7 @@ public class ClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Hola Servlet..");
-		/*doGet(request, response); */
+		
                 String action = request.getParameter("action");
 		System.out.println(action);
 		try {
@@ -181,13 +177,11 @@ public class ClienteServlet extends HttpServlet {
 	}
  
 	private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Cliente articulo = new Cliente(0, request.getParameter("nombre"), request.getParameter("cedula"), request.getParameter("ciudad"), request.getParameter("direccion") );
-		_clienteDAO.insertar(articulo);
-		
+		Cliente clienteNuevo = new Cliente(0, request.getParameter("nombre"), request.getParameter("cedula"), request.getParameter("ciudad"), request.getParameter("direccion") );
+		//_clienteDAO.insertar(clienteNuevo);
+		clienteFacade.create(clienteNuevo);
                 mostrar(request, response);
-                /*  
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);*/
+                
 	}
 	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -199,33 +193,37 @@ public class ClienteServlet extends HttpServlet {
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarClientes.jsp");
-		List<Cliente> listaCliente= _clienteDAO.listarClientes();
+		List<Cliente> listaCliente = clienteFacade.findAll();
+                //List<Cliente> listaCliente= _clienteDAO.listarClientes();
 		request.setAttribute("lista", listaCliente);
-                System.out.println("Mostrar2");
+                //System.out.println("Mostrar2");
 		dispatcher.forward(request, response);
 	}	
 	
 	private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
             int id = Integer.parseInt(request.getParameter("id"));
-            Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		List<Cliente> listaCliente = new ArrayList<Cliente>();
-                listaCliente.add(articulo);
-                request.setAttribute("articulo", listaCliente);
+            Cliente _clienteAEditar = clienteFacade.find(Integer.parseInt(request.getParameter("id")));
+            //Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+            List<Cliente> listaCliente = new ArrayList<Cliente>();
+            listaCliente.add(_clienteAEditar);
+            request.setAttribute("articulo", listaCliente);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditarCliente.jsp");
-		dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditarCliente.jsp");
+            dispatcher.forward(request, response);
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Cliente articulo = new Cliente(Integer.parseInt(request.getParameter("ID")), request.getParameter("nombre"), request.getParameter("cedula"), request.getParameter("ciudad"), request.getParameter("direccion"));
-		_clienteDAO.actualizar(articulo);
+		Cliente clienteEditado = new Cliente(Integer.parseInt(request.getParameter("ID")), request.getParameter("nombre"), request.getParameter("cedula"), request.getParameter("ciudad"), request.getParameter("direccion"));
+                clienteFacade.edit(clienteEditado);
+		//_clienteDAO.actualizar(clienteEditado);
                  mostrar(request, response);
 	/*	index(request, response); */
 	}
 	
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-            Cliente articulo = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		_clienteDAO.eliminar(articulo);
+            Cliente clienteEliminar = _clienteDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		//_clienteDAO.eliminar(articulo);
+                clienteFacade.remove(clienteEliminar);
                 mostrar(request, response);
 	/*	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);  */

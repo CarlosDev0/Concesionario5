@@ -89,10 +89,7 @@
                 <textarea class="form-control" name="direccion" rows="5" placeholder="Dirección" required="required" data-validation-required-message="Please enter a message.">${Cliente.direccion}</textarea>
                 <p class="Porfavor inserte dirección"></p>
               </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Imagen</label>
-                </div>     
+                
             </div>
               <br>
             <div id="success"></div>

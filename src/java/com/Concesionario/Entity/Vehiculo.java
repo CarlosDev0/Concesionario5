@@ -60,7 +60,8 @@ public class Vehiculo implements Serializable {
     @Size(min = 1, max = 600)
     @Column(name = "Descripcion")
     private String descripcion;
-
+    private String matricula;
+    
     public Vehiculo() {
     }
 
@@ -68,18 +69,26 @@ public class Vehiculo implements Serializable {
         this.idVehiculo = idVehiculo;
     }
 
-    public Vehiculo(Integer idVehiculo, String modelo, String marca, long precio, String descripcion) {
+    public Vehiculo(Integer idVehiculo, String modelo, String marca, long precio, String descripcion, String Matricula) {
         this.idVehiculo = idVehiculo;
         this.modelo = modelo;
         this.marca = marca;
         this.precio = precio;
         this.descripcion = descripcion;
+        this.matricula = Matricula;
     }
 
     public Integer getIdVehiculo() {
         return idVehiculo;
     }
-
+    //Ingresado manualmente
+    public void setMatricula(String matricula){
+        this.matricula = matricula;
+    }
+    //Ingresado manualmente
+    public String getMatricula (){
+        return matricula;
+    }
     public void setIdVehiculo(Integer idVehiculo) {
         this.idVehiculo = idVehiculo;
     }
