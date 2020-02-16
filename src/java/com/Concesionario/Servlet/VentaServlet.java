@@ -48,9 +48,9 @@ public class VentaServlet extends HttpServlet {
 
 		try {
  
-			ventaDAO = new VentaDAO(jdbcURL, jdbcUsername, jdbcPassword);
-                        _clienteDAO = new ClienteDAO(jdbcURL, jdbcUsername, jdbcPassword);
-                        _vehiculoDAO = new VehiculoDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			ventaDAO = new VentaDAO();
+                        _clienteDAO = new ClienteDAO();
+                        _vehiculoDAO = new VehiculoDAO();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -97,6 +97,9 @@ public class VentaServlet extends HttpServlet {
                         
                         nuevo(request,response);
                         break;
+                    case "eliminar":
+                        eliminar(request,response);
+                        break;
                 }
             } catch (SQLException e) {
 			e.getStackTrace();
@@ -124,6 +127,9 @@ public class VentaServlet extends HttpServlet {
                         break;
                     case "guardarVenta":
                         registrar(request,response);
+                        break;
+                    case "editarVenta":
+                        editar(request,response);
                         break;
                 }
             } catch (SQLException e) {
@@ -154,17 +160,23 @@ public class VentaServlet extends HttpServlet {
     private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
        
         String sDate1="31/12/1998";  
-        Date date1=null;
-
-       int Id = Integer.parseInt(request.getParameter("Vehiculo"));
-       String nv = request.getParameter("NombreVendedor"); 
-       Short Q = Short.parseShort(request.getParameter("Cantidad"));
+        //Date date1=null;
+        try{
+            String fechaString = request.getParameter("FechaVenta");
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("FechaVenta"));
+        
+            int Id = Integer.parseInt(request.getParameter("Vehiculo"));
+            String nv = request.getParameter("NombreVendedor"); 
        
-       //Venta _venta = new Venta(0, Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("NombreVendedor"), Short.parseShort(request.getParameter("Cantidad")), BigDecimal.valueOf(20.234), date1, "", Integer.parseInt(request.getParameter("PrecioVentaTotal")));	
-        Venta _venta = new Venta(0, Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("NombreVendedor"), Short.parseShort(request.getParameter("Cantidad")), date1, Integer.parseInt(request.getParameter("PrecioVentaTotal")));	
+       
+       
+            Venta _venta = new Venta(0, Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("NombreVendedor"), date1, Integer.parseInt(request.getParameter("PrecioVentaTotal")));	
             
-		ventaDAO.insertar(_venta);
-                 mostrar(request, response);
+            ventaDAO.insertar(_venta);
+            mostrar(request, response);
+        }catch(ParseException e){
+            throw new RuntimeException("Could not parse start/end date time in file ");
+        }
     }
     private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		Venta _venta = ventaDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
@@ -172,7 +184,30 @@ public class VentaServlet extends HttpServlet {
                 listaVentas.add(_venta);
                 request.setAttribute("articulo", listaVentas);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/portafolio.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditarVenta.jsp");
 		dispatcher.forward(request, response);
 	}
+    
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		Venta ventaAEliminar = ventaDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		ventaDAO.eliminar(ventaAEliminar);
+                mostrar(request, response);
+	
+		
+	}
+    private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+        try{
+            String fechaString = request.getParameter("fechaVenta");
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fechaVenta"));
+            int idVenta = Integer.parseInt(request.getParameter("ID"));
+            Venta ventaActualizar = new Venta(Integer.parseInt(request.getParameter("ID")), Integer.parseInt(request.getParameter("Cliente")), Integer.parseInt(request.getParameter("Vehiculo")), request.getParameter("nombreVendedor"), date1, Integer.parseInt(request.getParameter("precioVenta")));	    
+            
+		ventaDAO.actualizar(ventaActualizar);
+	
+                mostrar(request, response);
+        }catch(ParseException e)
+        {
+            throw new RuntimeException("Could not parse start/end date time in file ");
+        }
+    }
 }

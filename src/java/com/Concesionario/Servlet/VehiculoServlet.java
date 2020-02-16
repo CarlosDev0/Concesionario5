@@ -18,10 +18,12 @@ import javax.servlet.http.HttpServletResponse;
  
 import com.Concesionario.DAO.VehiculoDAO;
 import com.Concesionario.Entity.Vehiculo;
+import com.Concesionario.JavaBeans.VehiculoFacadeLocal;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import javax.activation.DataSource;
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
@@ -31,22 +33,25 @@ import javax.naming.InitialContext;
  */
 @WebServlet("/Vehiculo")
 public class VehiculoServlet extends HttpServlet {
+    
 	private static final long serialVersionUID = 1L;
 	VehiculoDAO articuloDAO;
  
 	public void init() {
-            String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
+          /*  String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
 		String jdbcUsername = "carlos";
 		String jdbcPassword = "carlos";
                
-
+            */
 		try {
  
-			articuloDAO = new VehiculoDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			articuloDAO = new VehiculoDAO();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
+ @EJB
+    private VehiculoFacadeLocal vehiculoFacade;  
  
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -176,7 +181,8 @@ public class VehiculoServlet extends HttpServlet {
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVehiculos.jsp");
-		List<Vehiculo> listaArticulos= articuloDAO.listarArticulos();
+		List<Vehiculo> listaArticulos = vehiculoFacade.findAll();
+                //List<Vehiculo> listaArticulos= articuloDAO.listarArticulos();
 		request.setAttribute("lista", listaArticulos);
                 System.out.println("Mostrar2");
 		dispatcher.forward(request, response);

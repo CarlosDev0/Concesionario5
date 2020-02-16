@@ -89,7 +89,7 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
     
-    public Venta(Integer idVenta, int idCliente, int idVehiculo, String nombreVendedor, short cantidad, Date FechaVenta, Integer precioVentaTotal) {
+    public Venta(Integer idVenta, int idCliente, int idVehiculo, String nombreVendedor, Date FechaVenta, Integer precioVentaTotal) {
         this.idVenta = idVenta;
         this.idCliente = idCliente;
         this.idVehiculo = idVehiculo;

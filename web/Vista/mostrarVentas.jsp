@@ -47,10 +47,10 @@
                         <td>${venta.idCliente}</td>
                         <td>${venta.nombreVendedor}</td>
                         <td>${venta.precioVentaTotal}</td>
-                        <td></td>
-                       <!-- <td>${venta.fechaVenta}</td>  -->
                         
-                        <td><a href="Venta?action=showedit&id=<c:out value="${venta.idVenta}" />">Editar</a></td>
+                        <td>${venta.fechaVenta}</td>
+                        
+                        <td><a href="Venta?action=showEdit&id=<c:out value="${venta.idVenta}" />">Editar</a></td>
 			<td><a href="Venta?action=eliminar&id=<c:out value="${venta.idVenta}" />">Eliminar</a> </td>				
                         <td><a href="Venta?action=nuevo">Nuevo</a> </td>
                     </tr>

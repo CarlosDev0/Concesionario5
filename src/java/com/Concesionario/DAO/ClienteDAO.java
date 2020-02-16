@@ -23,9 +23,10 @@ public class ClienteDAO {
     private Conexion con;
 	private Connection connection;
 
-	public ClienteDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) throws SQLException {
-		System.out.println(jdbcURL);
-		con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
+	public ClienteDAO() throws SQLException {
+		//System.out.println(jdbcURL);
+		//con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
+                con = new Conexion();
 	}
 
 	// insertar artículo

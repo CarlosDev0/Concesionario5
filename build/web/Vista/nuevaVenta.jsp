@@ -58,10 +58,8 @@
             </select> 
         </th>
     </tr>
-             <tr>
-                <th> Cantidad</th>
-                 <th> <input type="number" name="Cantidad" class="form-control" placeholder="Cantidad" required="false" /></th>
-            </tr>
+    
+    
             
              <tr>
                 <th> Fecha Venta</th>

@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.Concesionario.model.Conexion;
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 /**
  *
@@ -30,14 +34,15 @@ public class VentaDAO {
     private Conexion con;
 	private Connection connection;
 
-	public VentaDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) throws SQLException {
-		System.out.println(jdbcURL);
-		con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
+	public VentaDAO() throws SQLException {
+		//System.out.println(jdbcURL);
+		//con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
+                con = new Conexion();
 	}
 
 	// insertar artículo
 	public boolean insertar(Venta venta) throws SQLException {
-		String sql = "INSERT INTO Ventas (IdVenta, IdCliente, IdVehiculo, NombreVendedor, PrecioVentaTotal) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Ventas (IdVenta, IdCliente, IdVehiculo, NombreVendedor, PrecioVentaTotal, FechaVenta) VALUES (?, ?, ?, ?, ?, ?)";
 		System.out.println(venta.getIdVehiculo());
 		con.conectar();
 		connection = con.getJdbcConnection();
@@ -47,7 +52,13 @@ public class VentaDAO {
 		statement.setInt(3, venta.getIdVehiculo());
 		statement.setString(4, venta.getNombreVendedor());
                 statement.setInt(5, venta.getPrecioVentaTotal());
-		
+                
+                Instant instant = venta.getFechaVenta().toInstant();
+                ZoneId zoneId = ZoneId.of ( "America/Montreal" );
+                ZonedDateTime zdt = ZonedDateTime.ofInstant ( instant , zoneId );
+                LocalDate localDate = zdt.toLocalDate();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+		statement.setDate(6, sqlDate);
 
 		boolean rowInserted = statement.executeUpdate() > 0;
 		statement.close();
@@ -75,7 +86,7 @@ public class VentaDAO {
                         Date fechaVenta = resulSet.getDate("FechaVenta");
                         Integer PrecioVentaTotal=resulSet.getInt("PrecioVentaTotal");
 
-                        Venta _venta = new Venta(idVenta, idCliente, idVehiculo, NombreVendedor, cantidad, fechaVenta, PrecioVentaTotal);
+                        Venta _venta = new Venta(idVenta, idCliente, idVehiculo, NombreVendedor, fechaVenta, PrecioVentaTotal);
 
 			listaVentas.add(_venta);
 		}
@@ -96,7 +107,7 @@ public class VentaDAO {
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
                  
-			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getShort("Cantidad"), res.getDate("FechaVenta"), res.getInt("PrecioVentaTotal"));
+			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getDate("FechaVenta"), res.getInt("PrecioVentaTotal"));
 		}
 		res.close();
 		con.desconectar();
@@ -105,17 +116,25 @@ public class VentaDAO {
 	}
 
 	// actualizar
-	public boolean actualizar(Venta _cliente) throws SQLException {
+	public boolean actualizar(Venta _venta) throws SQLException {
 		boolean rowActualizar = false;
-		String sql = "UPDATE Ventas SET idCliente=?,idVehiculo=?, NombreVendedor=? WHERE IdVenta=?";
+		String sql = "UPDATE Ventas SET idCliente=?,idVehiculo=?, NombreVendedor=?, FechaVenta=?, PrecioVentaTotal=? WHERE IdVenta=?";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setInt(1, _cliente.getIdCliente());
-		statement.setInt(2, _cliente.getIdVehiculo());
-                statement.setString(3, _cliente.getNombreVendedor());
+		statement.setInt(1, _venta.getIdCliente());
+		statement.setInt(2, _venta.getIdVehiculo());
+                statement.setString(3, _venta.getNombreVendedor());
 		
-		statement.setInt(4, _cliente.getIdVenta());
+                Instant instant = _venta.getFechaVenta().toInstant();
+                ZoneId zoneId = ZoneId.of ( "America/Montreal" );
+                ZonedDateTime zdt = ZonedDateTime.ofInstant ( instant , zoneId );
+                LocalDate localDate = zdt.toLocalDate();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+		statement.setDate(4, sqlDate);
+               statement.setInt(5, _venta.getPrecioVentaTotal());
+                
+		statement.setInt(6, _venta.getIdVenta());
 
 		rowActualizar = statement.executeUpdate() > 0;
 		statement.close();

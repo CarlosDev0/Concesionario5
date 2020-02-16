@@ -23,15 +23,21 @@ import java.sql.SQLException;
 public class Conexion {
     private Connection jdbcConnection;
     private String jdbcURL;
-    private String jdbcUsername;
+    private String jdbcUsername ;
     private String jdbcPassword;
-    
+    /*
     public Conexion(String jdbcURL, String jdbcUsername, String jdbcPassword) {
 		this.jdbcURL = jdbcURL;
 		this.jdbcUsername = jdbcUsername;
 		this.jdbcPassword = jdbcPassword;
 	}
-
+*/
+    public Conexion()
+    {
+        this.jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
+	this.jdbcUsername = "carlos";
+	this.jdbcPassword = "carlos";
+    }
 	public void conectar() throws SQLException {
         if (jdbcConnection == null || jdbcConnection.isClosed()) {
             try {
@@ -53,5 +59,5 @@ public class Conexion {
 	public Connection getJdbcConnection() {
 		return jdbcConnection;
 	}  
-
+       
 }

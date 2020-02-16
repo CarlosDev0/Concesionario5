@@ -33,9 +33,10 @@ public class VehiculoDAO {
 	private Conexion con;
 	private Connection connection;
 
-	public VehiculoDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) throws SQLException {
-		System.out.println(jdbcURL);
-		con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
+	public VehiculoDAO() throws SQLException {
+		//System.out.println(jdbcURL);
+		//con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
+                con = new Conexion();
 	}
 
 	// insertar artículo

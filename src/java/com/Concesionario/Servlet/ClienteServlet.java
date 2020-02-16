@@ -33,21 +33,21 @@ public class ClienteServlet extends HttpServlet {
 	ClienteDAO _clienteDAO;
  
 	public void init() {
-            String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
+           /*     String jdbcURL = "jdbc:mysql://localhost:3308/bdconcesionario?serverTimezone=UTC";
 		String jdbcUsername = "carlos";
 		String jdbcPassword = "carlos";
-               
+             */  
 
 		try {
  
-			_clienteDAO = new ClienteDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			_clienteDAO = new ClienteDAO();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-/*
+
     @EJB
-    private ClienteFacadeLocal clienteFacade;  */
+    private ClienteFacadeLocal clienteFacade;  
 
     public ClienteServlet() {
             super();

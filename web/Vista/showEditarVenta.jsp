@@ -9,29 +9,53 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar Venta</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Edición de Venta</title>
+  
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+        <!-- Plugin CSS -->
+        <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+        <!-- Theme CSS - Includes Bootstrap -->
+        <link href="css/creative.min.css" rel="stylesheet">
     </head>
    <body>
         <jsp:include page="..\menu.jsp"></jsp:include>
         <div class="container well">
             <form action="VentaServlet?action=editarVenta" method="post">
-            <c:forEach var="Vehiculo" items="${articulo}">
+            <c:forEach var="Venta" items="${articulo}">
                 <table>
                     <tr>
-                        <th><label>IdCliente</label></th>
-                        <th><input type="text" placeholder="Enter IdVehiculo" value="${Vehiculo.idVehiculo}" class="form-control" name="idVehiculo" required=""></th>
+                        <th><label>idVenta</label></th>
+                        <th><input type="text" placeholder="IdVenta" value="${Venta.idVenta}" class="form-control" name="ID" required=""></th>
                     </tr>
                     <tr>
-                        <th><label>Marca</label></th>
-                        <th><input type="text" placeholder="Enter Nombre Marca" value="${Vehiculo.marca}" class="form-control" name="marca" required=""></th>
+                        <th><label>idVehiculo</label></th>
+                        <th><input type="text" placeholder="Enter idVehiculo" value="${Venta.idVehiculo}" class="form-control" name="Vehiculo" required=""></th>
+                    </tr>
+                    <tr>
+                        <th><label>IdCliente</label></th>
+                        <th><input type="text" placeholder="IdCliente" value="${Venta.idCliente}" class="form-control" name="Cliente" required=""></th>
                     </tr>
                      <tr>
-                        <th><label>Modelo</label></th>
-                        <th><input type="text" placeholder="Enter Modelo" class="form-control" value="${Vehiculo.modelo}" name="modelo" required=""></th>
+                        <th><label>Fecha Venta</label></th>
+                        <th><input type="date" placeholder="Fecha Venta" class="form-control" value="${Venta.fechaVenta}" name="fechaVenta" required=""></th>
                     </tr>
                     <tr>
-                        <th><label>Año Fabricacion</label></th>
-                        <th><input type="text" placeholder="Enter Año Fabricacion" class="form-control" value="${Vehiculo.anoFabricacion}" name="anoFabricacion" required=""></th>
+                        <th><label>Nombre Vendedor</label></th>
+                        <th><input type="text" placeholder="Nombre Vendedor" class="form-control" value="${Venta.nombreVendedor}" name="nombreVendedor" required=""></th>
+                    </tr>
+                    <tr>
+                        <th><label>Precio Venta Total</label></th>
+                        <th><input type="text" placeholder="PrecioVenta" class="form-control" value="${Venta.precioVentaTotal}" name="precioVenta" required=""></th>
                     </tr>
                     <tr>
                     <input class="btn icon-btn btn-success" type="submit" name="action" value="Actualizar">
