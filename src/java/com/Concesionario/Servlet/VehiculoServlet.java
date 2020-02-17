@@ -144,6 +144,10 @@ public class VehiculoServlet extends HttpServlet {
 				break;
                         case "cancelarNuevo":
                                 cancelar(request, response);
+                                break;
+                        case "filtrarVehiculo":
+                                filtrarVehiculo(request,response);
+                                break;
                         default:
 				break;
 			}			
@@ -215,5 +219,14 @@ public class VehiculoServlet extends HttpServlet {
 		//articuloDAO.eliminar(articulo);
                 vehiculoFacade.remove(vehiculoAEliminar);
                 mostrar(request, response);
+	}
+        private void filtrarVehiculo(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/mostrarVehiculos.jsp");
+                String criterio = request.getParameter("criterio");
+                
+                List<Vehiculo> listaVehiculos = articuloDAO.filtrar(criterio);
+                request.setAttribute("lista", listaVehiculos);
+                dispatcher.forward(request, response);
+               
 	}
 }

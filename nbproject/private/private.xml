@@ -3,27 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/portafolio.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/JavaBeans/ClienteFacade.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/DAO/VentaDAO.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/showEditarVenta.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/mostrarClientes.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Servlet/VentaServlet.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Servlet/ClienteServlet.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/showEditarVehiculo.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/nuevoVehiculo.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/DAO/ClienteDAO.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Entity/Venta.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/showEditarCliente.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Servlet/VehiculoServlet.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/mostrarVehiculos.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/DAO/VehiculoDAO.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/JavaBeans/VehiculoFacade.java</file>
             <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/nuevaVenta.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/mostrarVentas.jsp</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Entity/Vehiculo.java</file>
-            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/nuevoCliente.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Servlet/VentaServlet.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/portafolio.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/mostrarVehiculos.jsp</file>
             <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Entity/Cliente.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/nuevoVehiculo.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Entity/Venta.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Servlet/VehiculoServlet.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/showEditarVehiculo.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/JavaBeans/ClienteFacade.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/DAO/VehiculoDAO.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/showEditarVenta.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/JavaBeans/VehiculoFacade.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Servlet/ClienteServlet.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/JavaBeans/VehiculoFacadeLocal.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/mostrarVentas.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/DAO/ClienteDAO.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/showEditarCliente.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/DAO/VentaDAO.java</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/web/Vista/nuevoCliente.jsp</file>
+            <file>file:/C:/CARLOS/UDEA/Arquitectura%20de%20Software/ConcesionarioGitHub/Concesionario5/src/java/com/Concesionario/Entity/Vehiculo.java</file>
         </group>
     </open-files>
 </project-private>

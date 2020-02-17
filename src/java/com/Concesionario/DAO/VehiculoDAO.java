@@ -139,4 +139,27 @@ public class VehiculoDAO {
 
 		return rowEliminar;
 	}
+        public List<Vehiculo> filtrar(String criterio) throws SQLException {
+
+		List<Vehiculo> listaArticulos = new ArrayList<Vehiculo>();
+		String sql = "SELECT * FROM vehiculo WHERE Matricula like '%"+criterio+"%' ORDER BY IdVehiculo";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		Statement statement = connection.createStatement();
+		ResultSet resulSet = statement.executeQuery(sql);
+
+		while (resulSet.next()) {
+			int id = resulSet.getInt("IdVehiculo");
+			String modelo = resulSet.getString("Modelo");
+			String marca = resulSet.getString("MARCA");
+			String descripcion = resulSet.getString("descripcion");
+                        long precio = resulSet.getLong("Precio");
+                        String matricula = resulSet.getString("Matricula");
+                        
+			Vehiculo articulo = new Vehiculo(id, modelo, marca, precio, descripcion,matricula);
+			listaArticulos.add(articulo);
+		}
+		con.desconectar();
+		return listaArticulos;
+	}
 }
