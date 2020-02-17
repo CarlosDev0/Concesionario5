@@ -20,6 +20,8 @@ import com.Concesionario.DAO.VehiculoDAO;
 import com.Concesionario.Entity.Vehiculo;
 import com.Concesionario.JavaBeans.VehiculoFacadeLocal;
 import java.beans.PropertyDescriptor;
+import java.io.File;
+import java.io.FileInputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import javax.activation.DataSource;
@@ -204,6 +206,12 @@ public class VehiculoServlet extends HttpServlet {
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+            String ruta = request.getParameter("Foto");
+            //File imagen = new File(ruta);
+            //ruta puede ser: "/home/cmop/Desktop/1.jpg"
+            //FileInputStream   fis = new FileInputStream(imagen);
+            //Lo convertimos en un Stream
+            //stmt.setBinaryStream(1, fis, (int) imagen.length());
            
             Vehiculo vehiculoActualizar = new Vehiculo(Integer.parseInt(request.getParameter("ID")), request.getParameter("modelo"), request.getParameter("marca"), Long.parseLong(request.getParameter("precio")), request.getParameter("descripcion"),request.getParameter("Matricula"));
             vehiculoFacade.edit(vehiculoActualizar);	

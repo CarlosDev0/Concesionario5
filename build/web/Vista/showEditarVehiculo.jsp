@@ -38,6 +38,10 @@
                         <th><input type="text" placeholder="Enter Año Fabricacion" class="form-control" value="${Vehiculo.anoFabricacion}" name="anoFabricacion" required=""></th>
                     </tr>
                     <tr>
+                        <th><label>Imagen</label></th>
+                        <th><input type="file" class="custom-file-input" id="customFile" name="Foto"></th>
+                    </tr>
+                    <tr>
                     <input class="btn icon-btn btn-success" type="submit" name="action" value="Actualizar">
                     <input class="btn btn-info btn-lg" type="reset" name="action" value="reset">
                     </tr>

@@ -101,7 +101,7 @@
                 <p class="Porfavor inserte descripción"></p>
               </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
+                    <input type="file" class="custom-file-input" id="customFile" name="Foto">
                     <label class="custom-file-label" for="customFile">Imagen</label>
                 </div>     
             </div>
