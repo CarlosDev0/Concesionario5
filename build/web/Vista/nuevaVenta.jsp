@@ -86,25 +86,20 @@
             
             <tr>
                  <td colspan="2">
-                 <input class="btn icon-btn btn-success" type="submit" name="action" value="guardarVenta">
-                 <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
-           <!--
                  
-                 <input class="btn icon-btn btn-info" type="submit" name="action" value="Edit">
-                 <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>
-                 
-                 <input class="btn icon-btn btn-danger" type="submit" name="action" value="Delete">
-                 <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>
-                 
-               <input class="btn icon-btn btn-primary" type="submit" name="action" value="Search">
-               <span class="glyphicon btn-glyphicon glyphicon-search img-circle text-primary"></span>
-            -->   
                  
                  </td>
              </tr>
             
         </table>
+     <p>&nbsp;</p>
+                <input class="btn icon-btn btn-success" type="submit" name="action" value="Guardar Venta">
+                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                <br/>
+              <p>&nbsp;</p>
             </form>
+        <form action="VentaServlet" method="POST">  <button class="btn icon-btn btn-info" type="submit" name="action" value="cancelarNuevo" id="sendMessageButton">Volver</button>
+        </form>
             <br>
             
           

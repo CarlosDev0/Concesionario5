@@ -107,7 +107,7 @@ public class VentaDAO {
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
                  
-			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdVehiculo"), res.getInt("IdCliente"), res.getString("NombreVendedor"), res.getDate("FechaVenta"), res.getInt("PrecioVentaTotal"));
+			_venta = new Venta(res.getInt("IdVenta"), res.getInt("IdCliente"), res.getInt("IdVehiculo"), res.getString("NombreVendedor"), res.getDate("FechaVenta"), res.getInt("PrecioVentaTotal"));
 		}
 		res.close();
 		con.desconectar();

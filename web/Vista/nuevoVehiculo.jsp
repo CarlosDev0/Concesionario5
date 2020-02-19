@@ -77,7 +77,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Precio</label>
-                <input class="form-control" name="precio" type="text" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
+                <input class="form-control" name="precio" type="number" placeholder="Ej:2000000" required="required" data-validation-required-message="Por favor, inserte el tel.">
               </div>
             </div>
              <div class="control-group">
@@ -106,8 +106,8 @@
               <button type="submit" class="btn btn-success btn-xl" name="action" value="guardarVehiculo" id="sendMessageButton">Guardar</button>
            
             
-              <button type="submit" class="btn btn-danger btn-xl" name="action" value="cancelarNuevo" id="sendMessageButton">Cancelar</button>
-         
+           <%--   <button type="submit" class="btn btn-danger btn-xl" name="action" value="cancelarNuevo" id="sendMessageButton">Cancelar</button>   --%>
+              <button type="reset" class="btn  btn-danger btn-xl" name="action" value="reset" id="sendMessageButton">Reset</button>
              
               
             </div>

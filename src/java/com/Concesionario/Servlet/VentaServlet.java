@@ -71,6 +71,7 @@ public class VentaServlet extends HttpServlet {
      */
     @EJB
     private VehiculoFacadeLocal vehiculoFacade; 
+    @EJB
     private ClienteFacadeLocal clienteFacade; 
     
     public VentaServlet(){
@@ -138,6 +139,9 @@ public class VentaServlet extends HttpServlet {
                     case "editarVenta":
                         editar(request,response);
                         break;
+                    case "cancelarNuevo":
+                        mostrar(request,response);
+                        break;
                 }
             } catch (SQLException e) {
 			e.getStackTrace();
@@ -203,14 +207,18 @@ public class VentaServlet extends HttpServlet {
         }
     }
     private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Venta _venta = ventaDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		List<Venta> listaVentas = new ArrayList<Venta>();
-                listaVentas.add(_venta);
-                request.setAttribute("articulo", listaVentas);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditarVenta.jsp");
-		dispatcher.forward(request, response);
-	}
+	List<Vehiculo> listaVehiculos = vehiculoFacade.findAll();
+        List<Cliente> listaClientes = clienteFacade.findAll();
+        Venta _venta = ventaDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+        List<Venta> listaVentas = new ArrayList<Venta>();
+        listaVentas.add(_venta);
+        request.setAttribute("articulo", listaVentas);
+	request.setAttribute("vehiculos", listaVehiculos);	
+        request.setAttribute("clientes", listaClientes);	
+        
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/Vista/showEditarVenta.jsp");
+	dispatcher.forward(request, response);
+    }
     
     private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		Venta ventaAEliminar = ventaDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));

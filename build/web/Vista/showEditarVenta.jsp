@@ -28,22 +28,39 @@
         <link href="css/creative.min.css" rel="stylesheet">
     </head>
    <body>
-        <jsp:include page="..\menu.jsp"></jsp:include>
-        <div class="container well">
+       <%-- <jsp:include page="..\menu.jsp"></jsp:include>  --%>
+       <table>
+		<tr>
+			<td><a href="http://localhost:3702/Concesionario5/" >Menú Principal</a> </td>
+		</tr>
+	</table> 
+       <div class="container well">
             <form action="VentaServlet?action=editarVenta" method="post">
+                <h1>Editar Venta</h1>
             <c:forEach var="Venta" items="${articulo}">
                 <table>
                     <tr>
-                        <th><label>idVenta</label></th>
+                        <th><label>IdVenta</label></th>
                         <th><input type="text" placeholder="IdVenta" value="${Venta.idVenta}" class="form-control" name="ID" required=""></th>
                     </tr>
                     <tr>
-                        <th><label>idVehiculo</label></th>
-                        <th><input type="text" placeholder="Enter idVehiculo" value="${Venta.idVehiculo}" class="form-control" name="Vehiculo" required=""></th>
+                        <th><label>Vehiculo</label></th>
+                        <TH>
+                        <select class="form-control" name="Vehiculo" id="Cliente" >
+                        <c:forEach var="vehiculo" items="${vehiculos}">
+                           <option value="${vehiculo.idVehiculo}" ${vehiculo.idVehiculo == Venta.idVehiculo? 'selected="selected"' : ''}>${vehiculo.marca} - ${vehiculo.modelo}</option>
+                        </c:forEach> 
+                      </select></TH>
+                        
                     </tr>
                     <tr>
                         <th><label>IdCliente</label></th>
-                        <th><input type="text" placeholder="IdCliente" value="${Venta.idCliente}" class="form-control" name="Cliente" required=""></th>
+                        <th><select class="form-control" name="Cliente" id="Cliente" >
+                        <c:forEach var="cliente" items="${clientes}">
+                            <option value="${cliente.idCliente}" ${cliente.idCliente == Venta.idCliente? 'selected="selected"' : ''}>${cliente.nombre}</option>  
+                        </c:forEach>
+                        </select>
+                           
                     </tr>
                      <tr>
                         <th><label>Fecha Venta</label></th>
@@ -58,11 +75,16 @@
                         <th><input type="text" placeholder="PrecioVenta" class="form-control" value="${Venta.precioVentaTotal}" name="precioVenta" required=""></th>
                     </tr>
                     <tr>
-                    <input class="btn icon-btn btn-success" type="submit" name="action" value="Actualizar">
-                    <input class="btn btn-info btn-lg" type="reset" name="action" value="reset">
+                    <div><br></div>
+                    </tr>
+                    <tr>
+                    <div><br></div>    
                     </tr>
                 </table>
                 </c:forEach>
+                 <button type="submit" class="btn btn-primary  btn-xl btn-success" name="action" value="Actualizar">Actualizar</button>
+                 <button type="reset" class="btn btn-warning btn-xl" name="action" value="reset" id="sendMessageButton">Cancelar</button>
+                 <button type="submit" class="btn btn-info btn-xl" name="action" value="cancelarNuevo" id="sendMessageButton">Volver</button>
             </form>
         </div>
     </body>

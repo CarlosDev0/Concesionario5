@@ -33,7 +33,7 @@
 			<td><a href="http://localhost:3702/Concesionario5/" >Menú Principal</a> </td>
 		</tr>
 	</table>
-        <h1>AUTOS</h1>
+        <h1>EDITAR VEHICULO</h1>
        <section class="page-section" id="contact">
         <div class="container">
 

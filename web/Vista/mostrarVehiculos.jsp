@@ -29,7 +29,7 @@
               <nav class="navbar navbar-light bg-light">
                 <form class="form-inline" action="VehiculoServlet?action=filtrarVehiculo" method="post">
                   <input class="form-control mr-sm-2" type="search" placeholder="Inserte el nro de matricula" aria-label="Search" name="criterio">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="action" value="filtrarVehiculo">Search</button>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="action" value="filtrarVehiculo">Buscar</button>
                 </form>
               </nav>
             <table border="1" class="table table-striped">
